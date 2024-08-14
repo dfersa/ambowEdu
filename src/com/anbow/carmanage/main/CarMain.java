@@ -1,0 +1,119 @@
+package com.anbow.carmanage.main;
+
+import com.anbow.carmanage.bean.Car;
+import com.anbow.carmanage.bean.Dirver;
+import com.anbow.carmanage.bean.User;
+import com.anbow.carmanage.dao.UserDao;
+import com.anbow.carmanage.view.MainView;
+
+import java.util.List;
+
+public class CarMain {
+    static UserDao ud = new UserDao();
+
+    public static void main(String[] args) {
+        int ii = 3;
+        User t;
+//        String str;
+//        for ()
+        for (;;) {
+            String str =  MainView.login();
+            String[] strs = str.split(":");
+            User user = new User(strs[0],strs[1]);
+            t = ud.login(user);
+            ii--;
+            if (ii == 0 || ud.judgeLogin(t,ii)) break;
+        }
+        if (t != null) {
+            for (;;){
+                int i = MainView.function();
+                if (i == 0) {
+                    MainView.exit();
+                    break;
+                }
+                function(i);
+            }
+        }
+    }
+
+    public static void function(int choice) {
+        switch (choice) {
+            case 1:
+                int i = MainView.carManage();
+                switch (i) {
+                        case 0:
+                            break;
+                        case 1:
+                            String str = MainView.addcar();
+                            String[] strs = str.split(":");
+                            Car car = new Car(Integer.parseInt(strs[0]),strs[1],strs[2],strs[3],strs[4]);
+                            ud.addCar(car);
+                            MainView.carAddSuccess();
+                            break;
+                        case 2:
+                            String str2 = MainView.deleteCar();
+                            String[] strs2 = str2.split(":");
+                            Car car2 = new Car(Integer.parseInt(strs2[0]),strs2[1],strs2[2],strs2[3],strs2[4]);
+                            ud.deleteCar(car2);
+                            MainView.carDeleteSuccess();
+                            break;
+                        case 3:
+                            String str3 = MainView.oldCar();
+                            String[] strs3 = str3.split(":");
+                            Car car3 = new Car(Integer.parseInt(strs3[0]),strs3[1],strs3[2],strs3[3],strs3[4]);
+                            String str4 = MainView.latestCar();
+                            String[] strs4 = str4.split(":");
+                            Car car4 = new Car(Integer.parseInt(strs4[0]),strs4[1],strs4[2],strs4[3],strs4[4]);
+                            ud.updateCar(car3,car4);
+                            MainView.carUpdateSuccess();
+                            break;
+                        case 4:
+                            List<Car> cars = ud.selectCar();
+                            MainView.selectCar(cars);
+                            break;
+                    }
+                break;
+            case 2:
+                int j = MainView.driverManage();
+                switch (j) {
+                    case 0:
+                        break;
+                    case 1:
+                        String str = MainView.addDriver();
+                        String[] strs = str.split(":");
+                        Dirver dirver = new Dirver(strs[0],strs[1],strs[2],Integer.parseInt(strs[3]),Integer.parseInt(strs[4]));
+                        ud.addDriver(dirver);
+                        MainView.driverAddSuccess();
+                        break;
+                    case 2:
+                        String str2 = MainView.addDriver();
+                        String[] strs2 = str2.split(":");
+                        Dirver dirver1 = new Dirver(strs2[0],strs2[1],strs2[2],Integer.parseInt(strs2[3]),
+                                Integer.parseInt(strs2[4]));
+                        ud.deleteDriver(dirver1);
+                        MainView.carDeleteSuccess();
+                        break;
+                    case 3:
+                        String str3 = MainView.oldDriver();
+                        String[] strs3 = str3.split(":");
+                        Dirver dirver3 = new Dirver(strs3[0],strs3[1],strs3[2],Integer.parseInt(strs3[3]),
+                                Integer.parseInt(strs3[4]));
+                        String str4 = MainView.latestDriver();
+                        String[] strs4 = str4.split(":");
+                        Dirver dirver4 = new Dirver(strs4[0],strs4[1],strs4[2],Integer.parseInt(strs4[3]),
+                                Integer.parseInt(strs4[4]));
+                        ud.updateDriver(dirver3,dirver4);
+                        MainView.carUpdateSuccess();
+                        break;
+                    case 4:
+                        List<Dirver> dirvers = ud.selectDriver();
+                        MainView.selectDriver(dirvers);
+                        break;
+                }
+                break;
+            default:
+                MainView.error();
+                break;
+        }
+    }
+}
