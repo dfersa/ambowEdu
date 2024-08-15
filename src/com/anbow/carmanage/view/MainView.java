@@ -56,7 +56,16 @@ public class MainView {
     public static String addcar() {
         System.out.println("请依次输入 汽车型号、车牌号、车辆颜色、车辆品牌、车主");
         int a = InputUtil.getInt();
-        String b = InputUtil.getString();
+        String b;
+        for (;;) {
+            b = InputUtil.getString();
+            //验证输入是否合法
+            if (b.length() < 6 || b.length() > 8) {
+                MainView.carNumberLength();
+                continue;
+            }
+            break;
+        }
         String c = InputUtil.getString();
         String d = InputUtil.getString();
         String e = InputUtil.getString();
@@ -175,6 +184,12 @@ public class MainView {
         System.out.println("您输入有误请重新输入");
     }
 
+    //是否继续
+    public static int con() {
+        System.out.println("是否继续？");
+        return InputUtil.getInt();
+    }
+
     //验证提示
     public static void errorName(){
         System.out.println("账户不能为空！！！");
@@ -188,5 +203,32 @@ public class MainView {
     public static void errorPasswordLength(){
         System.out.println("密码至少6位字符！！！");
     }
+
+    //输出值在0-2之间
+    public static void errorInput02(){
+        System.out.println("必须是0~2的整数");
+    }
+    //输出值在0-4之间
+    public static void errorInput04(){
+        System.out.println("必须是0~4的整数");
+    }
+
+    //车辆新增验证
+    public static void carNumberNotNull() {
+        System.out.println("车牌号不能为空！");
+    }
+    public static void carNumberLength() {
+        System.out.println("车牌号必须为七位字符！");
+    }
+    public static void carColorNotNull() {
+        System.out.println("车辆颜色不能为空！");
+    }
+    public static void carBrandNotNull() {
+        System.out.println("车辆品牌不能为空！");
+    }
+    public static void carDriverNotNull() {
+        System.out.println("车辆司机不能为空！");
+    }
+
 
 }

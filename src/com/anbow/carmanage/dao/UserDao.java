@@ -35,22 +35,27 @@ public class UserDao {
         return u;
     }
     //输入账户判断
-    //            if (user.getUsername() == "" ) {
-    //                MainView.errorName();
-    //                flag = false;
-    //            }
-    //            if (user.getPassword() == "" ) {
-    //                MainView.errorPassword();
-    //                flag = false;
-    //            }
-    //            if (user.getUsername().length() < 6 ) {
-    //                MainView.errorNameLength();
-    //                flag = false;
-    //            }
-    //            if (user.getPassword().length() < 6 ) {
-    //                MainView.errorPasswordLength();
-    //                flag = false;
-    //            }
+    public boolean judgeInput(User user) {
+        boolean flag = true;
+                    if (user.getUsername() == "" ) {
+                        MainView.errorName();
+                        flag = false;
+                    }
+                    if (user.getPassword() == "" ) {
+                        MainView.errorPassword();
+                        flag = false;
+                    }
+                    if (user.getUsername().length() < 6 ) {
+                        MainView.errorNameLength();
+                        flag = false;
+                    }
+                    if (user.getPassword().length() < 6 ) {
+                        MainView.errorPasswordLength();
+                        flag = false;
+                    }
+                    return flag;
+    }
+
 
 
     //登录反馈页

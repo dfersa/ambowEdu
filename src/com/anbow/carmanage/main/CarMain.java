@@ -14,12 +14,16 @@ public class CarMain {
     public static void main(String[] args) {
         int ii = 3;
         User t;
-//        String str;
-//        for ()
         for (;;) {
             String str =  MainView.login();
             String[] strs = str.split(":");
             User user = new User(strs[0],strs[1]);
+            if (!ud.judgeInput(user)) {
+                ii--;
+                t=null;
+                if (ii == 0 || ud.judgeLogin(t,ii)) break;
+                continue;
+            };
             t = ud.login(user);
             ii--;
             if (ii == 0 || ud.judgeLogin(t,ii)) break;
@@ -31,24 +35,50 @@ public class CarMain {
                     MainView.exit();
                     break;
                 }
+                if (i < 0 || i > 2) {
+                    MainView.errorInput02();
+                    continue;
+                }
                 function(i);
             }
         }
     }
 
     public static void function(int choice) {
+        //1级菜单
         switch (choice) {
             case 1:
-                int i = MainView.carManage();
-                switch (i) {
+                for (;;) {
+                    boolean judge = false;
+                    int i = MainView.carManage();
+                    if (i < 0 || i > 4) {
+                        MainView.errorInput04();
+                        continue;
+                    }
+                    //二级菜单
+                    switch (i) {
                         case 0:
+                            judge = true;
                             break;
                         case 1:
-                            String str = MainView.addcar();
-                            String[] strs = str.split(":");
-                            Car car = new Car(Integer.parseInt(strs[0]),strs[1],strs[2],strs[3],strs[4]);
-                            ud.addCar(car);
-                            MainView.carAddSuccess();
+                            for (;;) {
+                                String str = MainView.addcar();
+                                String[] strs = str.split(":");
+                                Car car = new Car(Integer.parseInt(strs[0]),strs[1],strs[2],strs[3],strs[4]);
+                                ud.addCar(car);
+                                MainView.carAddSuccess();
+                                int o = MainView.con();
+                                boolean j = false;
+                                switch (o) {
+                                    case 1:
+                                        j = false;
+                                        break;
+                                    case 2:
+                                        j = true;
+                                        break;
+                                }
+                                if (j) break;
+                            }
                             break;
                         case 2:
                             String str2 = MainView.deleteCar();
@@ -72,11 +102,20 @@ public class CarMain {
                             MainView.selectCar(cars);
                             break;
                     }
+                    if (judge) break;
+                }
                 break;
             case 2:
+                for (;;) {
+                    boolean judge = false;
                 int j = MainView.driverManage();
-                switch (j) {
+                    if (j < 0 || j > 4) {
+                        MainView.errorInput04();
+                        continue;
+                    }
+                    switch (j) {
                     case 0:
+                        judge = true;
                         break;
                     case 1:
                         String str = MainView.addDriver();
@@ -84,6 +123,7 @@ public class CarMain {
                         Dirver dirver = new Dirver(strs[0],strs[1],strs[2],Integer.parseInt(strs[3]),Integer.parseInt(strs[4]));
                         ud.addDriver(dirver);
                         MainView.driverAddSuccess();
+                        judge = true;
                         break;
                     case 2:
                         String str2 = MainView.addDriver();
@@ -92,6 +132,7 @@ public class CarMain {
                                 Integer.parseInt(strs2[4]));
                         ud.deleteDriver(dirver1);
                         MainView.carDeleteSuccess();
+                        judge = true;
                         break;
                     case 3:
                         String str3 = MainView.oldDriver();
@@ -104,11 +145,15 @@ public class CarMain {
                                 Integer.parseInt(strs4[4]));
                         ud.updateDriver(dirver3,dirver4);
                         MainView.carUpdateSuccess();
+                        judge = true;
                         break;
                     case 4:
                         List<Dirver> dirvers = ud.selectDriver();
                         MainView.selectDriver(dirvers);
+                        judge = true;
                         break;
+                }
+                    if (judge) break;
                 }
                 break;
             default:
