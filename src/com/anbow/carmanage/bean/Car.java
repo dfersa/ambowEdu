@@ -1,5 +1,7 @@
 package com.anbow.carmanage.bean;
 
+import java.util.Objects;
+
 public class Car {
     private Integer carid;
     private Integer carmodel;
@@ -55,6 +57,7 @@ public class Car {
         return carbrand;
     }
 
+
     public void setCarbrand(String carbrand) {
         this.carbrand = carbrand;
     }
@@ -67,5 +70,17 @@ public class Car {
         this.cardriver = cardriver;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(carid, car.carid) && Objects.equals(carmodel, car.carmodel) && Objects.equals(carnumber, car.carnumber) && Objects.equals(carcolor, car.carcolor) && Objects.equals(carbrand, car.carbrand) && Objects.equals(cardriver, car.cardriver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(carid, carmodel, carnumber, carcolor, carbrand, cardriver);
+    }
 
 }

@@ -252,5 +252,25 @@ public void updateCar(Car car3,Car car4) {
         return a;
     }
 //    验证
+    // 删除
+public void deleteCarId(Integer carid) {
+    try {
+        //获取连接
+        Connection conn = ConnectionUtil.getConnection();
+        //定义sql 获取 preparedStatement
+        String sql = "delete from car where carid = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1,carid);
+
+        ps.executeUpdate();
+
+        ConnectionUtil.close(conn,ps);
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+
+
 
 }

@@ -4,6 +4,7 @@ import com.anbow.carmanage.bean.Car;
 import com.anbow.carmanage.bean.Dirver;
 import com.anbow.carmanage.bean.User;
 import com.anbow.carmanage.util.InputUtil;
+import com.anbow.carmanage.util.RegularUtil;
 
 import java.util.List;
 
@@ -66,9 +67,12 @@ public class MainView {
             }
             break;
         }
-        String c = InputUtil.getString();
-        String d = InputUtil.getString();
-        String e = InputUtil.getString();
+//        String c = InputUtil.getString();
+        String c = RegularUtil.getString(RegularUtil.CHKCOLOR,"颜色必须从蓝白黑红中选择");
+//        String d = InputUtil.getString();
+        String d = RegularUtil.getString(RegularUtil.CHKBRAND,"品牌必须大众、奔驰、宝马、法拉利");
+//        String e = InputUtil.getString();
+        String e = RegularUtil.getString(RegularUtil.CHKDRIVER,"车主名字必须两个字以上");
         return a + ":" + b + ":" + c + ":" + d + ":" + e;
     }
 
@@ -141,8 +145,10 @@ public class MainView {
         String a = InputUtil.getString();
         String b = InputUtil.getString();
         String c = InputUtil.getString();
-        String d = InputUtil.getString();
-        String e = InputUtil.getString();
+//        String d = InputUtil.getString();
+        String d = RegularUtil.getString(RegularUtil.CHKISNUMBER,"必须为数字");
+        //        String e = InputUtil.getString();
+        String e = RegularUtil.getString(RegularUtil.CHKISNUMBER,"必须为数字");
         return a + ":" + b + ":" + c + ":" + d + ":" + e;
     }
     //添加旧司机页面
@@ -228,6 +234,9 @@ public class MainView {
     }
     public static void carDriverNotNull() {
         System.out.println("车辆司机不能为空！");
+    }
+    public static void inputCarNumber() {
+        System.out.println("请输入车辆id:");
     }
 
 

@@ -4,6 +4,7 @@ import com.anbow.carmanage.bean.Car;
 import com.anbow.carmanage.bean.Dirver;
 import com.anbow.carmanage.bean.User;
 import com.anbow.carmanage.dao.UserDao;
+import com.anbow.carmanage.util.RegularUtil;
 import com.anbow.carmanage.view.MainView;
 
 import java.util.List;
@@ -81,10 +82,14 @@ public class CarMain {
                             }
                             break;
                         case 2:
-                            String str2 = MainView.deleteCar();
-                            String[] strs2 = str2.split(":");
-                            Car car2 = new Car(Integer.parseInt(strs2[0]),strs2[1],strs2[2],strs2[3],strs2[4]);
-                            ud.deleteCar(car2);
+                            List<Car> cars1 = ud.selectCar();
+                            MainView.selectCar(cars1);
+                            //获取 车辆编号
+                            MainView.inputCarNumber();
+                            String carId = RegularUtil.getString(RegularUtil.CHKISNUMBER,"必须输入数字！！！");
+                            //操作
+                            ud.deleteCarId(Integer.parseInt(carId));
+                            //循环判断
                             MainView.carDeleteSuccess();
                             break;
                         case 3:
@@ -120,7 +125,8 @@ public class CarMain {
                     case 1:
                         String str = MainView.addDriver();
                         String[] strs = str.split(":");
-                        Dirver dirver = new Dirver(strs[0],strs[1],strs[2],Integer.parseInt(strs[3]),Integer.parseInt(strs[4]));
+                        Dirver dirver = new Dirver(strs[0]+ " ",strs[1]+ " ",strs[2]+ " ",
+                                Integer.parseInt(strs[3]),Integer.parseInt(strs[4]));
                         ud.addDriver(dirver);
                         MainView.driverAddSuccess();
                         judge = true;
