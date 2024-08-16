@@ -2,7 +2,6 @@ package com.anbow.carmanage.view;
 
 import com.anbow.carmanage.bean.Car;
 import com.anbow.carmanage.bean.Dirver;
-import com.anbow.carmanage.bean.User;
 import com.anbow.carmanage.util.InputUtil;
 import com.anbow.carmanage.util.RegularUtil;
 
