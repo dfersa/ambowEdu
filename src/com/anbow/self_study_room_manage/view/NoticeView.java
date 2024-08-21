@@ -21,7 +21,7 @@ public class NoticeView {
         LocalDateTime now = LocalDateTime.now();
         String c = now.toString();
         System.out.println("请输入要增加的公告状态:");
-        String d = InputUtil.getString();
+        String d = RegularUtil.getString(RegularUtil.CHKNOTICESTATE,"公告状态只能为:未完成/已完成");
         System.out.println("增加成功！");
         return a + ";" + b + ";" +c + ";" +d;
     }

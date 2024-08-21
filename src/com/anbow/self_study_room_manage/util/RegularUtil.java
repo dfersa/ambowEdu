@@ -2,7 +2,7 @@ package com.anbow.self_study_room_manage.util;
 
 public class RegularUtil {
     public static final String CHKNOTICESTATE = "[已完成|未完成]";
-    public static final String CHKSEATSTATE = "[占用|未占用]";
+    public static final String CHKSEATSTATE = "[0|1]";
     public static final String CHKCHOICE = "[1-5]";
 
     public static String getString(String str, String message){
