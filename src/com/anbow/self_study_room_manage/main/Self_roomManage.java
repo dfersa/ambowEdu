@@ -26,7 +26,7 @@ public class Self_roomManage {
         //座位(增删改查)
         seat();
         //公告(增删改查)
-//        notice();
+        notice();
 //
     }
     public static void notice() throws Exception{
@@ -93,8 +93,7 @@ public class Self_roomManage {
                     break;
                 case 3:
                     //1 提示全部公告 2 提示更改 返回提示 3 执行操作
-                    List<SeatBean> b2 =  SeatDao.selectAllSeatDao();
-                    SeatView.show(b2);
+                    SeatView.show(SeatDao.selectAllSeatDao());
 
                     String s2  = SeatView.updateSeat();
                     String[] strs2 = s2.split(";");

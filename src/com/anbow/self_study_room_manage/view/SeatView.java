@@ -1,16 +1,14 @@
 package com.anbow.self_study_room_manage.view;
 
-import com.anbow.self_study_room_manage.bean.NoticeBean;
 import com.anbow.self_study_room_manage.bean.SeatBean;
 import com.anbow.self_study_room_manage.util.InputUtil;
-
-import java.time.LocalDateTime;
+import com.anbow.self_study_room_manage.util.RegularUtil;
 import java.util.List;
 
 public class SeatView {
    public static int systemView() {
            System.out.println("请输入你要进行的操作: \n 1 新增座位\t2 删除座位\t3 修改座位\t4 查询所有座位\t5返回上一级");
-           return InputUtil.getInt();
+           return RegularUtil.getInt(RegularUtil.CHKCHOICE,"选择必须为:1-5!");
    }
     public static String addSeat() {
         System.out.println("请输入要增加的座位名:");
@@ -36,7 +34,7 @@ public class SeatView {
         System.out.println("请输入要修改的座位姓名:");
         String b = InputUtil.getString();
         System.out.println("请输入要修改的座位状态:");
-        String c = InputUtil.getString();
+        String c = RegularUtil.getString(RegularUtil.CHKSEATSTATE,"座位状态中能为:占用/未占用");
         System.out.println("更新成功");
         return a + ";" + b + ";" + c;
     }
