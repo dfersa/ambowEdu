@@ -15,7 +15,7 @@ public class SeatView {
         String a = InputUtil.getString();
         System.out.println("请输入要增加的座位状态（0、1）:\n 0 未占用 1 占用");
         //将返回数字改为字符
-        int t = InputUtil.getInt();
+        int t = RegularUtil.getInt(RegularUtil.CHKSEATSTATE,"座位状态中能为0/1:0 未占用 1 占用");
         String b = "";
          if (t == 1) b = "占用";
          else b = "未占用";
@@ -38,7 +38,7 @@ public class SeatView {
         //将返回数字改为字符
         int t = RegularUtil.getInt(RegularUtil.CHKSEATSTATE,"座位状态中能为0/1:0 未占用 1 占用");
         String c = "";
-        if (t == 1) b = "占用";
+        if (t == 1) c = "占用";
         else c = "未占用";
 
         System.out.println("更新成功");

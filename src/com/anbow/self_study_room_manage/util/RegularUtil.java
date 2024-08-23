@@ -14,7 +14,7 @@ public class RegularUtil {
             if (b) {
                 flag = false;
             }else {
-                System.out.println("您输入错误" + message);
+                System.err.println("您输入错误" + message);
             }
         }
         return s;
@@ -28,7 +28,7 @@ public class RegularUtil {
             if (b) {
                 flag = false;
             }else {
-                System.out.println("您输入错误" + message);
+                System.err.println("您输入错误" + message);
             }
         }
         return Integer.parseInt(s);
